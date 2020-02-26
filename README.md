@@ -4,3 +4,5 @@ Learn python from [Python 基本教學](https://clay-atlas.com/blog/2019/07/29/p
 1. Open PyCharm and open hello_pyqt project, now it has **no venv**
 
 2. Settings => Project => Project Interpreter => Setting icon => **Add** => OK
+
+3. Settings => Project => Project Structure => Select src folder => Mark as: Sources
