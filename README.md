@@ -5,4 +5,4 @@ Learn python from [Python 基本教學](https://clay-atlas.com/blog/2019/07/29/p
 
 2. Settings => Project => Project Interpreter => Setting icon => **Add** => OK
 
-3. Settings => Project => Project Structure => Select src folder => Mark as: Sources
+3. Settings => Project => Project Structure => Select **src** folder => Mark as: **Sources**
