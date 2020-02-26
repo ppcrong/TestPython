@@ -1,0 +1,25 @@
+a = (1, 2, 2, 3, 3, 3, 'a', 'b', 'c', 'c')
+print(a.count(2))
+print(a.count(3))
+print(a.index(1))
+print(a.index('a'))
+
+a = set(a)
+b = set([1, 3, 5, 'a', 'c', 'e'])
+
+print(a)
+print(b)
+c = a.copy()
+print(c)
+
+c.clear()
+print(c)
+c.add(1)
+c.add(2)
+print(c)
+c.remove(1)
+print(c)
+
+print('交集:', a.intersection(b))
+print('聯集:', a.union(b))
+print('差集:', a.difference(b))
