@@ -120,3 +120,5 @@ a = [n for n in data]
 b = list(data)  # not recommend
 print(a)
 print(b)
+
+print("\nprint test:\n0x{:02X} 0x{:02X}".format(123, 255))
