@@ -1,9 +1,11 @@
 # https://icodding.blogspot.com/2016/05/python-with-as.html
 class Sample:
     def __enter__(self):
+        print("__enter__")
         return self
 
     def __exit__(self, type, value, trace):
+        print("__exit__")
         print("type:", type)
         print("value:", value)
         print("trace:", trace)
