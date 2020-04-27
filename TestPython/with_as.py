@@ -1,4 +1,7 @@
 # https://icodding.blogspot.com/2016/05/python-with-as.html
+import traceback
+
+
 class Sample:
     def __enter__(self):
         print("__enter__")
@@ -15,5 +18,14 @@ class Sample:
         return bar + 10
 
 
-with Sample() as sample:
-    sample.do_something()
+# Test without try-except
+# with Sample() as sample:
+#     sample.do_something()
+
+
+# Test with try-except
+try:
+    with Sample() as sample:
+        sample.do_something()
+except ZeroDivisionError as e:
+    traceback.print_exc()
