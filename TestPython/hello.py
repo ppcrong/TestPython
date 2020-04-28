@@ -99,7 +99,16 @@ determine(99)
 determine(1)
 
 sum = lambda x, y: x + y
-sum(1, 2)
+print("sum: %d" % sum(1, 2))
+
+lam1 = lambda x: x
+print("lam1: %s" % lam1("test"))
+
+lam2 = lambda x: x + "2"
+print("lam2: %s" % lam2("test"))
+
+lam3 = lambda x: "fixed string"
+print("lam3: %s" % lam3("test"))
 
 data = (1, 2, 3, '今天', '天氣', '真好')
 
