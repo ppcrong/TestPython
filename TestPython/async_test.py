@@ -16,11 +16,19 @@ async def raise_error(num):
     print('這邊不會執行到')
 
 
-async def main():
-    tasks = [do_something(i) for i in range(5)]
-    tasks1 = [raise_error(i) for i in range(5)]
+async def do_something_test(num):
+    print('do_something_test {} +++++'.format(num))
+    await asyncio.sleep(3)
+    print('do_something_test {} -----'.format(num))
+    return 'do_something_test {} complete'.format(num)
 
-    results = await asyncio.gather(*tasks, *tasks1, return_exceptions=True)
+
+async def main():
+    tasks0 = [do_something(i) for i in range(5)]
+    tasks1 = [raise_error(i) for i in range(5)]
+    tasks2 = [do_something_test(100)]
+
+    results = await asyncio.gather(*tasks0, *tasks1, *tasks2, return_exceptions=True)
     print(results)
 
 
