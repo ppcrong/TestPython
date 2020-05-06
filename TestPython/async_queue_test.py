@@ -1,5 +1,6 @@
 import asyncio
 
+
 # https://www.maxlist.xyz/2020/04/03/async-io-design-patterns-python/
 
 # 消費者
