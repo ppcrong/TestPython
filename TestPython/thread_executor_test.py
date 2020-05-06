@@ -2,6 +2,9 @@ import concurrent.futures
 import threading
 import time
 
+# https://stackoverflow.com/questions/6893968/how-to-get-the-return-value-from-a-thread-in-python
+# https://tinyurl.com/y7wjbw6l
+
 now = lambda: time.time()
 
 
