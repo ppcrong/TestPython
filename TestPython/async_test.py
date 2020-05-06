@@ -1,4 +1,5 @@
 import asyncio
+import threading
 import time
 
 # https://www.maxlist.xyz/2020/03/29/python-coroutine/
@@ -26,6 +27,8 @@ async def do_something_test(num):
 
 
 async def do_something_test2(num):
+    print('do_something_test2() thread: {}'.format(threading.current_thread()))
+
     print('do_something_test2 {} +++++'.format(num))
     await asyncio.sleep(3)
     print('do_something_test2 {} -----'.format(num))
@@ -33,6 +36,8 @@ async def do_something_test2(num):
 
 
 async def main():
+    print('main() thread: {}'.format(threading.current_thread()))
+
     tasks0 = [do_something(i) for i in range(5)]
     tasks1 = [raise_error(i) for i in range(5)]
     tasks2 = [do_something_test(100)]
@@ -42,6 +47,7 @@ async def main():
 
 
 if __name__ == "__main__":
+    print('thread: {}'.format(threading.current_thread()))
     start = now()
     asyncio.run(main())
     print('TIME: ', now() - start)
