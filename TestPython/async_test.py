@@ -1,6 +1,8 @@
 import asyncio
 import time
 
+# https://www.maxlist.xyz/2020/03/29/python-coroutine/
+
 now = lambda: time.time()
 
 
