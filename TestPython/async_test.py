@@ -25,12 +25,19 @@ async def do_something_test(num):
     return 'do_something_test {} complete'.format(num)
 
 
+async def do_something_test2(num):
+    print('do_something_test2 {} +++++'.format(num))
+    await asyncio.sleep(3)
+    print('do_something_test2 {} -----'.format(num))
+    return 'do_something_test2 {} complete'.format(num)
+
+
 async def main():
     tasks0 = [do_something(i) for i in range(5)]
     tasks1 = [raise_error(i) for i in range(5)]
     tasks2 = [do_something_test(100)]
 
-    results = await asyncio.gather(*tasks0, *tasks1, *tasks2, return_exceptions=True)
+    results = await asyncio.gather(*tasks0, *tasks1, *tasks2, do_something_test2(200), return_exceptions=True)
     print(results)
 
 
