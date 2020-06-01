@@ -1,6 +1,9 @@
 from ctypes import *
 
-dll_c = CDLL('dlls/ctypes_dll.dll')
+# visual studio
+#dll_c = CDLL('dlls/ctypes_dll.dll')
+# vscode
+dll_c = CDLL('dlls/libctypes_dll.dll')
 
 # read data of value
 c_value = c_int(0)
