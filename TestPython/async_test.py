@@ -1,4 +1,5 @@
 import asyncio
+import sys
 import threading
 import time
 
@@ -49,5 +50,12 @@ async def main():
 if __name__ == "__main__":
     print('thread: {}'.format(threading.current_thread()))
     start = now()
-    asyncio.run(main())
+    if sys.version_info >= (3, 7):
+        asyncio.run(main())
+    elif sys.version_info >= (3, 5):
+        futures = [main()]
+        new_loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(new_loop)
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(asyncio.wait(futures))
     print('TIME: ', now() - start)
