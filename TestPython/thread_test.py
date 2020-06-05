@@ -3,7 +3,6 @@ import threading
 
 # https://www.maxlist.xyz/2020/03/15/python-threading/
 
-
 class DoSomething:
     def __init__(self):
         self.t_list = []
