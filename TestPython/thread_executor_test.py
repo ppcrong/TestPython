@@ -18,7 +18,7 @@ if __name__ == "__main__":
     print('thread: {}'.format(threading.current_thread()))
     start = now()
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        future = executor.submit(foo, 'world!')
+        future = executor.submit(foo, bar='world!')
         return_value = future.result()
         print(return_value)
     print('TIME: ', now() - start)
