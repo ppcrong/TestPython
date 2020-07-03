@@ -92,3 +92,68 @@ print('\n===4==={}'.format(boxes))
 boxes = cast(c_boxes_p, POINTER(bounding_box_s * 2)).contents
 for b in boxes:
     print('\n===5==={}'.format(b))
+
+
+# read data of test_result_s
+class test_result_s(Structure):
+    _fields_ = [
+        ("class_count", c_uint),  # uint32_t
+        ("box_count", c_uint),  # boxes of all classes
+        ("boxes", POINTER(POINTER(bounding_box_s)))  # box array
+    ]
+
+    def __repr__(self):
+        ret_str = ''
+        for field in self._fields_:
+            ret_str = '\n'.join((ret_str, '\t{}: {}'.format(field[0], getattr(self, field[0]))))
+        return ret_str
+
+
+# box3 = bounding_box_s(x1=0, y1=0, x2=0, y2=0, score=0, class_num=0)
+# boxes = [box1, box2, box3]
+# c_boxes = (bounding_box_s * 3)()
+# c_boxes_p = pointer(c_boxes)
+# res1 = test_result_s(boxes=byref(c_boxes_p))
+# res2 = test_result_s(boxes=byref(c_boxes_p))
+# res3 = test_result_s(boxes=byref(c_boxes_p))
+# results = [res1, res2, res3]
+# print('\n///1///{}'.format(results))
+# c_results = (test_result_s * len(results))(*results)
+# c_results_p = pointer(c_results)
+# ret = dll_c.test_struct_array2(byref(c_results_p), len(results))
+# print('ret: {}'.format(ret))
+# results = list(c_results)
+# print('\n///2///{}'.format(results))
+
+"""
+reference: https://chrisheydrick.com/2016/02/06/passing-a-ctypes-array-of-struct-from-python-to-dll/
+"""
+class structtest(Structure):
+    _fields_ = [
+        ("x", c_char),
+        ("y", c_int),
+        ("z", c_long)
+    ]
+
+    def __repr__(self):
+        ret_str = ''
+        for field in self._fields_:
+            ret_str = '\n'.join((ret_str, '\t{}: {}'.format(field[0], getattr(self, field[0]))))
+        return ret_str
+
+
+n_struct2 = 5
+struct1 = structtest()
+struct2 = (structtest * n_struct2)()
+
+print("\n///////////////////\nBefore passing to .dll")
+print(struct1)
+for i in range(n_struct2):
+    print("struct2[{}] {}".format(i, struct2[i]))
+
+dll_c.fillonestruct(byref(struct1))
+dll_c.fillmultiplestruct(byref(struct2), c_int(n_struct2))
+print("\nAfter passing to .dll")
+print(struct1)
+for i in range(n_struct2):
+    print("struct2[{}] {}".format(i, struct2[i]))
