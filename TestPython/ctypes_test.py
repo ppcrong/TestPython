@@ -6,8 +6,22 @@ from ctypes import *
 dll_c = CDLL('dll/libctypes_dll.dll')
 
 # read data of value
+# method1 byref
 c_value = c_int(0)
 ret = dll_c.test_value(byref(c_value))
+print('ret: {}'.format(ret))
+print('c_value: {}'.format(c_value))
+# method2 pointer
+c_value = c_int(0)
+c_value_p = pointer(c_value)
+ret = dll_c.test_value(c_value_p)
+print('ret: {}'.format(ret))
+print('c_value: {}'.format(c_value))
+# method3 POINTER type in argtypes
+dll_c.test_value.argtypes = [POINTER(c_int)]
+c_value = c_int(0)
+ret = dll_c.test_value(c_value)
+# ret = dll_c.test_value(byref(c_value)) #  the same result as above line => https://blog.csdn.net/Kelvin_Yan/article/details/86546784
 print('ret: {}'.format(ret))
 print('c_value: {}'.format(c_value))
 
@@ -18,6 +32,7 @@ import numpy as np
 buf = np.arange(1, 17, dtype=np.byte)
 c_buf_p = (c_byte * len(buf))(*buf)
 dll_c.test_buf(c_buf_p)
+# dll_c.test_buf(byref(c_buf_p)) #  the same result as above line
 buf = list(c_buf_p)
 print('buf: {}'.format(buf))
 buf = np.ctypeslib.as_array(c_buf_p, np.int8)
