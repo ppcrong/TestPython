@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 numpy = "*"
 pypiwin32 = "*"
+alive-progress = "*"
+tinydb = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"
